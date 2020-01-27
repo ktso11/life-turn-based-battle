@@ -17,7 +17,7 @@ $(document).ready(function(){
     },
     {
       name: "Magic",
-      damage: [10,15,16,20],
+      damage: [10,15,16,20,30],
       cost: 10
     }
   ];
@@ -26,24 +26,31 @@ $(document).ready(function(){
     {
       name: "Econ Professor",
       hp: 80,
-      moves: "pop quiz",
+      moves: ["pop quiz","throw a textbook","your assignment received an E", "stand in the hallway", "write a 5000 words essay", "looks at you with disappointment"],
       responds: "You realized how little you know!",
       damage: [2,5,6,15,35,20,30]
     },
     {
       name: "Insecurity",
-      hp: 20,
-      moves: "shows you pictures of someone with a 6 pack!",
+      hp: 120,
+      moves: ["shows you pictures of someone with a 6 pack!","you no longer fit into your favorite jeans","remind of those wrinkles by your eyes!", "you have a huge stain on your shirt!", "Your ex is dating someone much hotter than you"],
       responds: "You feel super insecure!",
       damage: [0,5, 10, 35,30, 2,4,6,1]
     },
     {
       name: "Unhealthy lifestyle",
       hp: 130,
-      moves: "junk food throw",
-      responds: "You started eating processed food!",
+      moves: ["throws junk food at you","cancels your gym membership", "forgot to floss your teeth", "stayed up until 3AM", "remind you of the time you drank so much you passed out"],
+      responds: "You are ashamed of yourself!",
       damage: [10, 1,5, 2,20,40]
-    }
+    },
+    {
+      name: "Fear of the unknown",
+      hp: 30,
+      moves: ["ghost down the hallway", "boogie man underneath your bed", "ET is not gone home, in fact he's been hiding in your closet" ],
+      responds: "You almost wet your pants!",
+      damage: [6,15,35,20,30]
+    },
   ]
 
   // Append moves onto UI
@@ -84,7 +91,7 @@ $(document).ready(function(){
 
           setTimeout( function(){
              enemyAttack()
-           }, 2000 );
+           }, 1000 );
        }
      }
    })
@@ -93,10 +100,10 @@ $(document).ready(function(){
      enemyhpUI.text(enemyhp)
      userhpUI.text(userHp)
      if(userHp <= 0){
-       status.append("Your hp ran out! You lose")
+       status.append(`<br> <b>Your hp ran out! You lose</b>`)
        $(".game-ui__controls").attr('id', 'hide');
      } if (enemyhp <= 0){
-       status.append(`You defeated ${enemyname}!`)
+       status.append(`<br> <b>You defeated ${enemyname}!</b>`)
        $(".game-ui__controls").attr('id', 'hide');
      }
    }
@@ -109,16 +116,17 @@ $(document).ready(function(){
       } if (enemyhp <= 0){
         console.log("enemy dies")
         return
-      } if( enemyname === enemies[i].name){
+      } else if( enemyname === enemies[i].name){
          console.log("we found a match!!" + enemyname +enemies[i].name)
          let enemyDamage = enemies[i].damage
          let enemyAtkRespond = enemies[i].responds
          let enemyMove = enemies[i].moves
          let randomDamage = enemyDamage[Math.floor(Math.random() * enemyDamage.length)];
+         let randomMove = enemyMove[Math.floor(Math.random() * enemyMove.length)];
          userHp =  userHp - randomDamage
          updateHP()
          $(".game-ui__controls").attr('id', 'show');
-         status.append(`<br>${enemyname} attacks with '${enemyMove}'! ${enemyAtkRespond}! Your HP took a hit of ${randomDamage}!`)
+         status.append(`<br>${enemyname} attacks with '${randomMove}'! ${enemyAtkRespond}! Your HP took a hit of ${randomDamage}!`)
       }
     }
   }
