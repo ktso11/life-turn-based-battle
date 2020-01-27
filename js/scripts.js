@@ -65,6 +65,8 @@ $(document).ready(function(){
        var randomEnemy = enemies[Math.floor(Math.random() * enemies.length)];
        enemyhp = randomEnemy.hp
        enemyname = randomEnemy.name
+       userHp = 100
+       userMp = 50
        $('.game-ui__enemy-name').append("Enemy: "+ enemyname );
        status.append(`<br> ${enemyname} appeared!`);
        updateHP()
