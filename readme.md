@@ -2,7 +2,7 @@ A little game I created to explore Jquery on my own time. Inspired by turn based
 
 This is for comic relief. Please don't take it too seriously.
 
-- https://ktso11.github.io/life-RPG
+- https://ktso11.github.io/life-turn-based-battle/
 - Click on "Find Enemy" start
 - User can choose to attack or use magic on the enemy
 - Enemy will return attack in 2 seconds
